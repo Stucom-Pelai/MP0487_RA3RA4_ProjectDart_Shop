@@ -94,5 +94,20 @@ void main() {
       expect(discountRate, AppConstants.discountTier4Rate);
       expect(finalTotal, closeTo(1291.51, 0.01));
     });
+
+    test('should calculate 1-item purchase with no discount', () {
+      final cart = [
+        Product(AppConstants.defaultLaptopId, AppConstants.defaultLaptopName, AppConstants.defaultLaptopPrice),
+      ];
+      final subtotal = calculateSubtotal(cart);
+      final discountRate = getDiscountRate(cart.length);
+      final discountAmount = calculateDiscountAmount(subtotal, discountRate);
+      final finalTotal = calculateFinalTotal(subtotal, discountAmount);
+
+      expect(subtotal, closeTo(AppConstants.defaultLaptopPrice, 0.01));
+      expect(discountRate, AppConstants.noDiscountRate);
+      expect(discountAmount, 0.0);
+      expect(finalTotal, closeTo(AppConstants.defaultLaptopPrice, 0.01));
+    });
   });
 }
