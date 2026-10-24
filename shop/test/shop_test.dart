@@ -4,14 +4,14 @@ import 'package:test/test.dart';
 
 void main() {
   group('Core Functions Tests', () {
-    test('Product should be created with correct properties', () {
+    test('#1. Product should be created with correct properties', () {
       final product = Product(AppConstants.defaultLaptopId, AppConstants.defaultLaptopName, AppConstants.defaultLaptopPrice);
       expect(product.id, AppConstants.defaultLaptopId);
       expect(product.name, AppConstants.defaultLaptopName);
       expect(product.price, AppConstants.defaultLaptopPrice);
     });
 
-    test('calculateSubtotal should sum all cart items', () {
+    test('#2. calculateSubtotal should sum all cart items', () {
       final cart = [
         Product(AppConstants.defaultLaptopId, AppConstants.defaultLaptopName, AppConstants.defaultLaptopPrice),
         Product(AppConstants.defaultSmartphoneId, AppConstants.defaultSmartphoneName, AppConstants.defaultSmartphonePrice),
@@ -21,26 +21,26 @@ void main() {
       expect(calculateSubtotal(cart), closeTo(expected, 0.01));
     });
 
-    test('getDiscountRate should return correct rates', () {
+    test('#3. getDiscountRate should return correct rates', () {
       expect(getDiscountRate(0), AppConstants.noDiscountRate);
       expect(getDiscountRate(2), AppConstants.discountTier2Rate);
       expect(getDiscountRate(4), AppConstants.discountTier4Rate);
       expect(getDiscountRate(10), AppConstants.discountTier4Rate);
     });
 
-    test('calculateDiscountAmount should compute discount correctly', () {
+    test('#4. calculateDiscountAmount should compute discount correctly', () {
       expect(calculateDiscountAmount(100.0, 0.0), 0.0);
       expect(calculateDiscountAmount(100.0, 0.10), closeTo(10.0, 0.01));
       expect(calculateDiscountAmount(100.0, 0.20), closeTo(20.0, 0.01));
     });
 
-    test('calculateFinalTotal should subtract discount from subtotal', () {
+    test('#5. calculateFinalTotal should subtract discount from subtotal', () {
       expect(calculateFinalTotal(100.0, 0.0), 100.0);
       expect(calculateFinalTotal(100.0, 10.0), 90.0);
       expect(calculateFinalTotal(999.99, 99.99), closeTo(900.0, 0.01));
     });
 
-    test('findProductById should locate products correctly', () {
+    test('#6. findProductById should locate products correctly', () {
       final catalog = [
         Product(AppConstants.defaultLaptopId, AppConstants.defaultLaptopName, AppConstants.defaultLaptopPrice),
         Product(AppConstants.defaultSmartphoneId, AppConstants.defaultSmartphoneName, AppConstants.defaultSmartphonePrice),
@@ -52,7 +52,7 @@ void main() {
       expect(findProductById(catalog, 0), isNull);
     });
 
-    test('validateProductId should accept valid IDs and reject invalid ones', () {
+    test('#7. validateProductId should accept valid IDs and reject invalid ones', () {
       expect(validateProductId('1', 4), 1);
       expect(validateProductId('4', 4), 4);
       expect(validateProductId('0', 4), isNull);
@@ -63,7 +63,7 @@ void main() {
   });
 
   group('Integration Tests', () {
-    test('should calculate 2-item purchase correctly', () {
+    test('#8. should calculate 2-item purchase correctly', () {
       final cart = [
         Product(AppConstants.defaultLaptopId, AppConstants.defaultLaptopName, AppConstants.defaultLaptopPrice),
         Product(AppConstants.defaultSmartphoneId, AppConstants.defaultSmartphoneName, AppConstants.defaultSmartphonePrice),
@@ -78,7 +78,7 @@ void main() {
       expect(finalTotal, closeTo(1349.54, 0.01));
     });
 
-    test('should calculate 4-item purchase with 20% discount', () {
+    test('#9. should calculate 4-item purchase with 20% discount', () {
       final catalog = [
         Product(AppConstants.defaultLaptopId, AppConstants.defaultLaptopName, AppConstants.defaultLaptopPrice),
         Product(AppConstants.defaultSmartphoneId, AppConstants.defaultSmartphoneName, AppConstants.defaultSmartphonePrice),
@@ -95,7 +95,7 @@ void main() {
       expect(finalTotal, closeTo(1291.51, 0.01));
     });
 
-    test('should calculate 1-item purchase with no discount', () {
+    test('#10. should calculate 1-item purchase with no discount', () {
       final cart = [
         Product(AppConstants.defaultLaptopId, AppConstants.defaultLaptopName, AppConstants.defaultLaptopPrice),
       ];
