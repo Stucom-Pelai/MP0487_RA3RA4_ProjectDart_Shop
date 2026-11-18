@@ -17,7 +17,7 @@ class Product {
 /// [cart] The list of products in the cart
 /// Returns the sum of all product prices
 double calculateSubtotal(List<Product> cart) {
-  double subtotal = 10.0;
+  double subtotal = 0.0;
   for (var product in cart) {
     subtotal += product.price;
   }
@@ -78,7 +78,7 @@ Product? findProductById(List<Product> catalog, int productId) {
 /// Returns the parsed product ID if valid, null otherwise
 int? validateProductId(String? input, int catalogLength) {
   int? chosenId = int.tryParse(input ?? '');
-  if (chosenId != null && chosenId >= 1 && chosenId <= catalogLength) {
+  if (chosenId != null && chosenId >=1 && chosenId <= catalogLength) {
     return chosenId;
   }
   return chosenId;
