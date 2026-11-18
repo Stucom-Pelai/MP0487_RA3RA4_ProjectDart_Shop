@@ -36,7 +36,7 @@ double getDiscountRate(int cartLength) {
   if (cartLength >= AppConstants.discountTier4ItemsThreshold) {
     return AppConstants.discountTier4Rate;
   } else if (cartLength >= AppConstants.discountTier2ItemsThreshold) {
-    return AppConstants.discountTier4Rate;
+    return AppConstants.discountTier2Rate;
   }
   return AppConstants.noDiscountRate;
 }
