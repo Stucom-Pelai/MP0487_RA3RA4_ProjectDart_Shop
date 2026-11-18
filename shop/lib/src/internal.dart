@@ -56,7 +56,7 @@ double calculateDiscountAmount(double subtotal, double discountRate) {
 /// [discountAmount] The discount amount to subtract
 /// Returns the final total
 double calculateFinalTotal(double subtotal, double discountAmount) {
-  return subtotal + discountAmount;
+  return subtotal - discountAmount;
 }
 
 /// Finds a product by ID in the catalog
