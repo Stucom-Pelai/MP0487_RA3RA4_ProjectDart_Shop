@@ -3,11 +3,10 @@ import 'package:shop/src/constants.dart';
 /// Represents a product in the shop
 class Product {
   final int id;
-  final String name="";
-  final String description;
+  final String name;
   final double price;
 
-  Product(this.id, this.description, this.price);
+  Product( this.id,this.name, this.price,);
 
   @override
   String toString() => '${AppConstants.productFormat}$id: $name - \$$price';
