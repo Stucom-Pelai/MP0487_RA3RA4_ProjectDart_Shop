@@ -1,8 +1,11 @@
+
+
 import 'package:shop/src/internal.dart';
 import 'package:shop/src/constants.dart';
 import 'package:test/test.dart';
 
 void main() {
+  
   group('Core Functions Tests', () {
     test('#1. Product should be created with correct properties', () {
       final product = Product(AppConstants.defaultLaptopId, AppConstants.defaultLaptopName, AppConstants.defaultLaptopPrice);
@@ -73,9 +76,10 @@ void main() {
       final discountAmount = calculateDiscountAmount(subtotal, discountRate);
       final finalTotal = calculateFinalTotal(subtotal, discountAmount);
 
-      expect(subtotal, closeTo(1499.49, 0.01));
+      final expectedSubtotal = AppConstants.defaultLaptopPrice + AppConstants.defaultSmartphonePrice;
+      expect(subtotal, closeTo(expectedSubtotal, 0.01));
       expect(discountRate, AppConstants.discountTier2Rate);
-      expect(finalTotal, closeTo(1349.54, 0.01));
+      expect(finalTotal, closeTo(expectedSubtotal * (1 - AppConstants.discountTier2Rate), 0.01));
     });
 
     test('#9. should calculate 4-item purchase with 20% discount', () {
@@ -90,9 +94,13 @@ void main() {
       final discountAmount = calculateDiscountAmount(subtotal, discountRate);
       final finalTotal = calculateFinalTotal(subtotal, discountAmount);
 
-      expect(subtotal, closeTo(1614.39, 0.01));
+        final expectedSubtotal = AppConstants.defaultLaptopPrice +
+          AppConstants.defaultSmartphonePrice +
+          AppConstants.defaultHeadphonesPrice +
+          AppConstants.defaultMousePrice;
+        expect(subtotal, closeTo(expectedSubtotal, 0.01));
       expect(discountRate, AppConstants.discountTier4Rate);
-      expect(finalTotal, closeTo(1291.51, 0.01));
+        expect(finalTotal, closeTo(expectedSubtotal * (1 - AppConstants.discountTier4Rate), 0.01));
     });
 
     test('#10. should calculate 1-item purchase with no discount', () {

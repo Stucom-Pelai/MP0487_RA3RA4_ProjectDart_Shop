@@ -9,7 +9,7 @@ class AppConstants {
   static const String menuOption4 = '4. Checkout & Exit';
   static const String menuOption5 = '5. Cancel & Exit';
   static const String menuPrompt = 'Please select an option (1-5): ';
-
+//change weel
   // ===== Catalog Messages =====
   static const String catalogTitle = '--- Available Products ---';
   static const String catalogSeparator = '---------------------------';
